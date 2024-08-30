@@ -1,2 +1,1 @@
-# KBA-DEB
-developer essential for blockchain
+introduction git basics
