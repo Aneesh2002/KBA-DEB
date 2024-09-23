@@ -1,0 +1,53 @@
+h1{
+    text-align: center;
+    color: #a569bd;
+    margin-bottom: 10px;
+}
+.container{
+    border: solid 1px white;
+    border-radius: 20px;
+    background-color: #fdfefe;
+    width: 400px;
+    height: 520px;
+    margin-left: 400px;
+  
+    margin-top: 10px;
+    padding: 30px;
+    box-shadow: 3px 3px 3px 3px rgb(209, 199, 199);
+    
+}
+body{
+    background-color:#e8daef;
+}
+h4{
+    text-align: left;
+    padding-left: 20px;
+}
+input{
+    width: 350px;
+    height: 30px;
+    margin-top: 10px;
+
+}
+.btnn input{
+    width: 70px;
+    background-color:#a569bd;
+    border-radius: 2px;
+    border: none;
+    
+}
+.btnn{
+    text-align: center;
+    border-radius: 5px;
+    
+    
+
+}
+li{
+    list-style: none;
+
+}
+select{
+    width:350px;
+    height:30px
+}

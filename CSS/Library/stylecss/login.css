@@ -1,0 +1,104 @@
+.nav ul li{
+    float: right;
+    list-style: none;
+    
+    padding: 20px;
+
+}
+.navbar .logo p{
+    width: 40px;
+    height: 45px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+} 
+.navbar a{
+    text-decoration: none;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navbar{
+    width: auto;
+    height: 50px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    background-color:transparent;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(/CSS/Library/images/background.jpg);
+    font-family: Arial, Helvetica, sans-serif;
+    background-size: cover;
+    background-position: unset;
+}
+  .logo img{
+    width: 80px;
+    height: 80px;
+}
+.logo{
+    display: flex;
+    float: left;
+
+} 
+h1{
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+}
+.container{
+    border: solid 1px white;
+    border-radius: 20px;
+    background-color:#fdfbf9;
+    width: 300px;
+    height: 400px;
+    margin-left: 450px;
+  
+    margin-top: 50px;
+    padding: 70px;
+    box-shadow: 3px 3px 3px 3px rgb(209, 199, 199);
+    padding-top: 20px;
+    opacity: .7;
+    margin-bottom: 50px;
+    
+    
+    
+}
+body{
+    background-color:#e8daef;
+}
+h4{
+    text-align: left;
+    padding-left: 20px;
+}
+input{
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+
+}
+.btnn input{
+    width: 70px;
+    background-color:#a569bd;
+    border-radius: 2px;
+    border: none;
+    
+}
+.btnn{
+    text-align: center;
+    
+    
+
+}
+li{
+    list-style: none;
+
+}
+
+.container li a{
+    color: blue;
+}

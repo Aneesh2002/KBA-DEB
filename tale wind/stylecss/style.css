@@ -1,0 +1,48 @@
+h1{
+    text-align: center;
+    color: #a569bd;
+    margin-bottom: 10px;
+}
+.container{
+    border: solid 1px white;
+    border-radius: 20px;
+    background-color: #fdfefe;
+    width: 300px;
+    height: 400px;
+    margin-left: 500px;
+  
+    margin-top: 100px;
+    padding: 50px;
+    box-shadow: 3px 3px 3px 3px rgb(209, 199, 199);
+    
+}
+body{
+    background-color: antiquewhite;
+}
+h4{
+    text-align: left;
+    padding-left: 20px;
+}
+input{
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+
+}
+.btnn input{
+    width: 70px;
+    background-color:#a569bd;
+    border-radius: 2px;
+    border: none;
+    
+}
+.btnn{
+    text-align: center;
+    
+    
+
+}
+li{
+    list-style: none;
+
+}
