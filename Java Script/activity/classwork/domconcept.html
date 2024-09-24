@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mydiv">
+        <h1>Welcome to my page</h1>
+
+    </div>
+    <script>
+        let component=document.createElement("p");
+        component.innerHTML="Name :";
+        document.getElementById("mydiv").appendChild(component);
+        let component1=document.createElement("input");
+        component1.placeholder="enter you name";
+        document.getElementById("mydiv").appendChild(component1);
+    </script>
+</body>
+</html>

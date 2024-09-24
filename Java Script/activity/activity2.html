@@ -18,6 +18,21 @@
           b=p1;
           document.write("<br>after swap :a=",a,",b=",b,"<br>")
 
+        //   swap two numbers without tempory variables
+        
+        {
+            let x = 5;
+            let y = 6;
+            document.write(`<br>before swap : x=${x} & y=${y}`);
+
+            x = x + y;
+            y = x - y;
+            x = x - y
+
+            document.write(`<br>after swap : x=${x} & y=${y}`);
+        } 
+    
+
         //   largest among us two numbers
 
         let x=10;
@@ -127,21 +142,44 @@
              document.write("peremeter of circle is :",2*(pie*r*r))
 
         }
-        <h3>Program to convert Celsius to fahrenheit</h3>
+        // <h3>Program to convert Celsius to fahrenheit</h3>
 
-
-
-
-    </script>
-    <script>
         {
+            
             let x = 5;
             document.write(`<br> Degree Celsius : ${x}`);
     
             let y = (x * 9.0 / 5.0) + 32.0;
     
             document.write(`<br> Fahrenheit  : ${y}`);
+        
+        }
+        
+            {
+            let p = 50000;
+            let t = 10;
+            let r = 3;
+
+            document.write("<br> Simple Interest");
+            document.write(`<br>-------------------------`);
+            document.write(`<br> P , T & R : ${p}, ${t} & ${r}`);
+            let y = (p * t * r) / 100;
+            document.write(`<br> Interest  : ${y}`);
+
+            document.write(`<br> <br>Compound `);
+            document.write(`<br>-------------------------`);
+            document.write(`<br> P , T & R : ${p}, ${t} & ${r}`);
+            let A = p * Math.pow((1 + r / 100), t);
+            let CI = A - p;
+            document.write(`<br> Compound interest  : ${CI}`);
+
         } 
+        
+
+
+
+
     </script>
+  
 </body>
 </html>
