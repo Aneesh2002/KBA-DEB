@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=[1,2,3,4,5,6,7];
+        document.write("the valu in index third position ",a[3],"<br>");
+        let x=a[3]+a[5]
+        document.write("sum of index 3rd and 5 is :",x,"<br>")
+        document.write(a[10])
+        document.write(a.length)
+
+        
+        for(i=a[0];i<=a[6];i++){
+            document.write("<br>",i)
+        }
+
+
+        //print array using for loop
+        for(i=0;i<7;i++)
+        {
+            document.write("<br>",a[i])
+        }
+
+        //sum of array
+
+        let sum=0
+        for(let i=0;i<a.length;i++)
+        {
+            sum=sum+a[i]
+        }
+        document.write("<br>sum of array is :",sum)
+
+
+
+        //add 2 into all array
+        {
+            let x=0;
+            for(i=0;i<a.length;i++){
+                x=a[i]+2
+                document.write("<br>",x)
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

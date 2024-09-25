@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=scr, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            let num = 155;
+        let copy = num
+        let result = 0;
+
+        for (;num > 0;num = Math.floor(num / 10)) {
+            let temp = num % 10;
+            result = result + (temp * temp * temp);
+            
+        }
+        if (result == copy) {
+            document.write(`<br>${copy} is an amstrong number`)
+        } else {
+            document.write(`<br>${copy} is not an amstrong number`)
+        }
+
+    </script>
+</body>
+</html>
