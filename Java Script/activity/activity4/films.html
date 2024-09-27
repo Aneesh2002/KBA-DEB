@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Enter a list/array of films you like</h1>
+    <script>
+
+//From the list find the position of your favourite film
+        let film=['aavesham','bhramayugam','goat','kishkkindha kaandam','goat life','abcd','vellimoonga','vettam']
+        let a =film.indexOf('kishkkindha kaandam');
+        document.write(a,"<br>");
+
+        //Add one more film to the list
+
+        let b=film.push('jana gana mana')
+        document.write( "newly added film is :",film,"<br>");
+
+        // Pop one film from the list
+
+        let c=film.pop();
+        document.write( "popped added film is :",film,"<br>");
+
+        //Delete the least interested film from the list
+
+        let d=film.splice(2,1)
+        document.write( "deleted added film is :",film,"<br>");
+
+        delete[3]
+        document.write( "delete least favourite  film is :",film,"<br>");
+
+        //Make a different list from 3rd position to 6th position
+     
+        let e=film.slice(2,6)
+        document.write( " position 3 to 6 film is :",e,"<br>");
+
+        //Search whether "ARM" is on your list
+
+        
+        document.write(film.includes('ARM'))
+
+
+
+        
+
+
+    </script>
+</body>
+</html>

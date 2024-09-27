@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=[1,2,3,4]
+
+        //add an element into array
+        a.push(5);
+        document.write(a,"<br>")
+
+        //delete an element into array
+        a.pop();
+        document.write(a,"<br>")
+//covert an array to string
+        let b=a.toString();
+        document.write(a,"<br>",b[1],"<br>")
+        
+        //concat an array 
+
+        let c=[5,6,7,8,9]
+        let d=a.concat(c)
+        document.write(d,"<br>")
+
+
+        //adding an element in a perticular index
+
+        c.splice(2,0,1,4) //("(2)where to add new element","(0)how many wanto delete","(1,4)how many elemnt want to add")
+        document.write(c,"<br>")
+
+        //to slice a perticular part
+
+        let k=c.slice(2,5)//first parameter is starting point of slice ,second parameter is how many elemnts to slice(if we give index4 they slice index 0 to index 3)
+        document.write(k,"<br>")
+
+        //reverse of array is
+
+        let s=a.reverse();
+        document.write(s,"<br>")
+
+        //sort an array
+        let h=c.sort()
+        document.write(h,"<br>")
+
+      
+
+
+    </script>
+    <script>
+          //to check index number of an value
+
+          let m=c.indexOf(7);
+        document.write(m,"<br>")
+
+        //to append a perticular thing
+
+        let n=c.join("*")
+         
+        document.write(n,"<br>")
+    </script>
+</body>
+</html>

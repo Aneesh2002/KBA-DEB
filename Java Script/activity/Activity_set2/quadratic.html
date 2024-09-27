@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Write a program to calculate the root of a quadratic equation.</h3>
+    <br>
+    <script>
+        let a = 2; b = 4; c = 2;
+
+        document.write("The quadractic equation is:", a, "x<sup>2</sup>+ ", b, "x + ", c)
+
+        let desc = (b * b) - (4 * a * c)
+        document.write("<br><br> Decsriminent :", desc)
+
+
+        if (desc > 0) {
+            let r1 = (- b) + (Math.sqrt(desc)) / (2 * a);
+            let r2 = (- b) - (Math.sqrt(desc)) / (2 * a);
+            document.write("<br> The Real Roots are : <br> Root1 : ", r1, "<br>Root2 : ", r2)
+        } else if (desc == 0) {
+            let r1 = (-b) / (2 * a);
+            let r2 = (-b) / (2 * a);
+            document.write("<br> Roots are equal  : <br> Root1 : ", r1, "<br>Root2 : ", r2)
+        }else{
+            document.write("<br> Roots are imaginary  ")
+        }
+
+
+    </script>
+
+</body>
+</html>

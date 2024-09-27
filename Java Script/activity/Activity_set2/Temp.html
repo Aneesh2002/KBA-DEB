@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h3>Write a program to read temperature in centigrade and display a suitable message according to the temperature
+        state below:</h3>
+    <br>
+    <script>
+
+        let temp = 30
+        document.write("Temparature : ",temp)
+
+        if (temp < 0) {
+            document.write("<br> Freezing weather");
+        } else if (temp >= 0 && temp < 10) {
+            document.write("<br> Very Cold weather");
+        } else if (temp >= 10 && temp < 20) {
+            document.write("<br> Cold weather");
+        } else if (temp >= 20 && temp < 30) {
+            document.write("<br> Normal in Temperature");
+        } else if (temp >= 30 && temp < 40) {
+            document.write("<br>  Hot");
+        } else if (temp >= 40) {
+            document.write("<br> Very Hot");
+        }
+
+    </script>
+
+</body>
+
+</html>

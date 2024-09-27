@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = 5;
+        let b = -7;
+        let c = 1
+
+        let mult = a * b * c;
+
+        document.write(`product of ${a}, ${b} & ${c} is : `, mult)
+
+        let p = Math.sign(mult);
+
+        if (p == 1) {
+            document.write("<br>",mult, " is a positive number")
+        }else{
+            document.write("<br>",mult, " is a negative number")
+        }
+
+    </script>
+</body>
+</html>
