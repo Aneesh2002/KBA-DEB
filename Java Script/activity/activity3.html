@@ -122,12 +122,13 @@
 
             let element1 = document.createElement("input");
             element1.type = "radio";
-            element.name="feedback";
+            element1.name="feedback";
             element1.value = "bad";
             document.getElementById("bad").appendChild(element1);
 
             let element2 = document.createElement("input");
             element2.type = "radio";
+            element2.name="feedback"
             
             element2.value = "avg";
             document.getElementById("avg").appendChild(element2);
@@ -294,7 +295,7 @@
             document.write(str);
 
             let result = str.replaceAll("like", "don't like");
-            document.write('<br><br>', result)
+            document.write('<br><br>', result,"<br>")
 
         }  
 
@@ -302,7 +303,7 @@
     </script>
     <script>
         {
-            let num1=33
+            let num1=13
             let num2=22
             sum=num1+num2
             res=(sum>=50 && sum<=80)?65:80

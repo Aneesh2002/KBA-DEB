@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = [[], [], []]
+        for (i = 0; i < 3; i++) {
+            document.write("<br>")
+            for (j = 0; j < 3; j++) {
+                a[i][j] = 1;
+                document.write(a[i][j], " ")
+            }
+        }
+    </script>
+    <!-- 1 1 1 1
+         2 2 2 2
+         3 3 3 3 -->
+
+    <script>
+        let b = [[], [], []]
+        for (i = 0; i < 3; i++) {
+            document.write("<br>")
+            for (j = 0; j < 4; j++) {
+                b[i][j] = 1 + i;
+
+
+                document.write(b[i][j], " ")
+            }
+        }
+        //            2 4 6 8
+        //           10 12 14 16
+        //           18 20 22 24
+        {
+
+            let c = [[], [], []]
+            x = 0
+            for (i = 0; i < 3; i++) {
+                document.write("<br>")
+                for (j = 0; j < 4; j++) {
+                    x = x + 2
+                    c[i][j] = x
+                    document.write(c[i][j], " ")
+
+
+                }
+            }
+
+        }
+    </script>
+    <h1>transpose of a matrix</h1>
+    <script>
+
+        {
+
+            let c = [[], [], []]
+            x = 0
+            let transpose=[[],[],[]]
+            for (i = 0;i<3; i++) {
+                document.write("<br>")
+                
+                for (j = 0; j < 3; j++) {
+
+                    
+                    x = x + 2
+                    c[i][j] = x
+                    document.write(c[i][j], " ")
+                   
+
+
+                }
+            }
+
+            for(i=0;i<3;i++){
+                document.write("<br>")
+                for(j=0;j<3;j++){
+                    document.write(transpose[i][j]=c[j][i]," ")
+                }
+            }
+
+        }
+    </script>
+
+
+
+    
+</body>
+
+</html>

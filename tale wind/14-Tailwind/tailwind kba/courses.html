@@ -49,5 +49,44 @@
           </div>
       </div>
     </div>
+    <div class="ml-[550px]" >
+    <p>choose your opinion about our courses</p>
+    <div id="mydiv5" class="flex ml-[15px]  space-x-4">
+      
+      <div id="good">
+          <label for="radio" class="font-bold text-l">GOOD</label>
+      </div>
+      <div id="bad">
+          <label for="radio" class="font-bold text-l">BAD</label>
+      </div>
+      <div id="avg">
+          <label for="radio" class="font-bold text-l">AVERAGE</label>
+      </div>
+  </div>
+</div>
+    <script>
+      {
+          let element = document.createElement("input");
+          element.type = "radio";
+          element.name="feedback";
+          element.value = "good";
+          document.getElementById("good").appendChild(element);
+
+          let element1 = document.createElement("input");
+          element1.type = "radio";
+          element1.name="feedback";
+          element1.value = "bad";
+          document.getElementById("bad").appendChild(element1);
+
+          let element2 = document.createElement("input");
+          element2.type = "radio";
+          element2.name="feedback"
+          
+          element2.value = "avg";
+          document.getElementById("avg").appendChild(element2);
+
+      }
+
+  </script>
 </body>
 </html>
