@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>arrow function</h1>
+    <script>
+        let add = function(a,b){
+            return a+b
+        }
+        console.log("regular function",add(4,5));
+
+        let addarrow =(a,b)=> a+b;
+        console.log("arrow function ",addarrow(3,6))
+
+    </script>
+  
+
+    <script>
+          let person={
+        name :'Aneesh',
+        age :22,
+        city: 'palakkad',
+        greet:function(){
+            setTimeout(()=>{
+            console.log('hello'," " + this.name);
+            document.write('hello'," " + this.name)
+            },10000);
+
+        }
+    }
+    person.greet();
+
+    </script>
+</body>
+</html>

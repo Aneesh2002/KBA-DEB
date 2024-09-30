@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>age form example</h1>
+    <form action="" id="ageForm">
+        <label for="ageInput">Age:</label>
+        <input type="number" id="ageInput" name="age" min="0">
+        <button type="button" onclick="displayMessage()">Submit</button>
+    </form>
+    <p id="Message"></p>
+
+    <script>
+        function displayMessage(){
+            const age=document.getElementById('ageInput').value
+            const messageElement=document.getElementById('Message');
+
+            if(age){
+                messageElement.textContent=`you are ${age} years old`
+            }
+            else{
+                 messageElement.textContent="please enter your currect age"
+
+            }
+        }
+    </script>
+    
+</body>
+</html>
