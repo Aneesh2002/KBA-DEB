@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Create an object car with properties make, model, and year. Add a method getCarAge that calculates the car's age based on the current year and logs "This car is [age] years old". Assume the current year is 2024 and call the method to display the car's age.</p>
+    <script>
+        let car={
+            make :'tata',
+            model:'xuv',
+            year:2015,
+            getCarAge : function(){
+                const currentyear=2024
+                let Age=currentyear-this.year
+                document.write("the car is :"," ",Age," "," year old")
+            }
+            
+
+
+
+        }
+        car.getCarAge();
+        
+    </script>
+</body>
+</html>

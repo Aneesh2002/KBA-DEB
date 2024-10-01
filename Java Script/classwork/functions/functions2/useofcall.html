@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person={
+            fullName: function(city,country){
+                console.log(this.firstname +" "+this.lastname+ " "+city+" "+country)
+            }
+        }
+        const person1={
+            firstname:"Aneesh",
+            lastname:"MN"
+        }
+        person.fullName.call(person1,"kerala","india")
+    </script>
+    <h2>apply method</h2>
+    <script>
+        {
+        const person={
+            fullName: function(city,country){
+                console.log(this.firstname +" "+this.lastname+ " "+city+" "+country)
+            }
+        }
+        const person1={
+            firstname:"Aneesh",
+            lastname:"MN"
+        }
+        const person2={
+            firstname:"saneesh",
+            lastname:"babu"
+        }
+        person.fullName.apply(person2,["kerala","india"])
+    }
+
+    </script>
+    <script>
+        {
+            const person={
+            fullName: function(city,country){
+                console.log(this.firstname +" "+this.lastname+ " "+city+" "+country)
+            }
+        }
+        const person1={
+            firstname:"Aneesh",
+            lastname:"MN"
+        }
+        const person2={
+            firstname:"saneesh",
+            lastname:"babu"
+        }
+        const person3={
+            firstname:"akhil",
+            lastname:"chandh"
+        }
+        const boundFunction=person.fullName.bind(person3,"kerala","india")
+        boundFunction();
+
+        }
+    </script>
+</body>
+</html>

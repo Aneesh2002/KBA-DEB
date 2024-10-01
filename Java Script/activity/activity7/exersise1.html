@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Define a function calculateArea that takes two parameters length and width and returns the area of a rectangle. Then, define a function calculatePerimeter that takes the same parameters and returns the perimeter of the rectangle. Use both functions to log the area and perimeter of a rectangle with length 5 and width 10.
+
+    </p>
+    <script>
+        function calculateArea(length,width){
+            return length*width;
+
+
+        }
+        function calculatePerimeter(length,width){
+            return 2*(length+width)
+        }
+        let area=calculateArea(5,10);
+        let peri=calculatePerimeter(5,10);
+        document.write("area of rectangle is",area);
+        document.write("<br>perimetere of rectangle is ",peri);
+    </script>
+</body>
+</html>

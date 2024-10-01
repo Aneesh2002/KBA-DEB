@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>chicking the scope of 'this' keyword</h1>
+    <button onclick="ShowAlert()">show alert
+    </button>
+    <script>
+        console.log(this); //global window object
+
+        //function scope
+        function Showthis(){
+            console.log(this);
+        }
+        Showthis(); //window object
+
+
+        //object method context
+
+        let person={
+            name:'Aneesh',
+            greet:function(){
+                console.log('hello' +this.name)
+            }
+        }
+        person.greet();
+
+        let Arrowgreet=()=>{
+            console.log('arrow function this context',this);
+        }
+        Arrowgreet();
+
+        function ShowAlert(){
+            window.alert("this site is dangerous")
+        }
+
+        //immedietly invoked function expression
+
+        (function(){
+            console.log('function is immediatly executed ')
+        })();
+
+        
+    </script>
+    
+</body>
+</html>
