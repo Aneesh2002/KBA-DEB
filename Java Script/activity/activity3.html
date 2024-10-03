@@ -11,13 +11,17 @@
     <h3>Program to print a para about yourself using createElement() , textContent & append child.</h3>
     <br>
     <div id="mydiv">
+        
 
     </div>
     <script>
         {
-            let element = document.createElement("p");  //create a variable to store the tag/element
-            element.innerHTML = "Mt name is Aneesh . I'm from Palkkad"; // innerHTML is using to add contents in the p tag (like <p> welcome to dubai </p>)
-            document.getElementById("mydiv").appendChild(element); // append the tag in the div, that created in the top which id as  "mydiv"
+            let element = document.createElement("p"); 
+            element.textContent = "My name is Aneesh . I'm from Palkkad"; 
+            document.getElementById("mydiv").appendChild(element); 
+            
+            
+            
         }
 
     </script>
@@ -243,8 +247,8 @@
     <script>
         {
             let str1 = 'Hello World';
-            let str2 = 'hEllO World';
-            let result = str1.localeCompare(str2);
+            let str2 = 'hello World';
+            let result = str2.localeCompare(str1);
 
             document.write("result :", result);
             document.write("<br><br>Type :", typeof result)
@@ -318,7 +322,7 @@
         let num=21;
         num>18?document.write("you are eligble for voting"):document.write("you are not eligible for voting")
     </script>
-    <br><br>
+    
 
 
 </body>

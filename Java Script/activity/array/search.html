@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Write a program to search an element in an array</h3>
+    <br>
+    <script>
+        let a = [1, 2, 3, 4]
+        let f = 4;
+        let count = 0;
+        let position
+        document.write(a)
+        document.write("<br>find number : ",f)
+        for (i = 0; i < a.length; i++) {
+            if (f == a[i]) {
+                count = 1;
+                position = i;
+                break;
+            }
+        }
+        if (count == 1) {
+            document.write("<br> find the numer in ",position+1," position in the array")
+        }
+        else {
+            document.write("<br> Not find ")
+        }
+    </script>
+</body>
+
+</html>

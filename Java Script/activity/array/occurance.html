@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Write a program to read array=[1,6,7,8,2,3,4,2,9,2,2]. Find the occurance of 2 in this array</h3>
+    <br>
+    <script>
+        let a = [1,6,7,8,2,3,4,2,9,2,2]
+        let f = 2;
+        let count = 0;
+        document.write(a)
+        
+        for (i = 0; i < a.length; i++) {
+            if (f == a[i]) {
+                count = 1 + count;
+            }
+        }
+            document.write("<br> Count of 2 in this array is : ",count)
+   
+    </script>
+</body>
+</html>
