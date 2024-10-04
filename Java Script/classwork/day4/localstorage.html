@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            list-style:none ;
+            padding: 0;
+        }
+        li{
+            margin: 5px 0;
+        }
+        button{
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>trying local storage</h1>
+    <input type="text" id="taskInput" placeholder="Enter your Task">
+    <button onclick="addTask()">add Task</button>
+    <ul id="taskList"></ul>
+    <script>
+        function addTask(){
+            const taskInput=document.getElementById('taskInput');
+            const taskvalue=taskInput.value.trim();
+            if(taskvalue !== ''){
+                saveTaskToStorage(taskvalue);
+                createTaskElement(taskvalue);
+                taskInput.value='';
+            }
+        }
+        function saveTaskToStorage(task){
+            let tasks=getTasksFromLocalStorage();
+            tasks.push(task);
+            localStorage.setItem('tasks',JSON.stringify(tasks));
+        }
+
+        function getTasksFromLocalStorage(){
+            const tasks=localStorage.getItem('tasks')
+            return tasks? JSON.parse(tasks):[];
+        }
+
+        function createTaskElement(){
+            const taskList=document.getElementById('taskList')
+            const li=document.createElement('li')
+            li.textContent=task;
+            //add remove button
+
+            const removeButton=document.createElement('button');
+            removeButton.textContent="Remove"
+            removeButton.onclick=function(){
+            removeTask(task)
+            taskList.removeChild(li)
+            }
+            li.appendChild(removeButton)
+            taskList.appendChild(li)
+        }
+
+        function removeTask(taskToRemove){
+            let tasks=getTasksFromLocalStorage();
+            tasks=tasks.filter(task=>task !==taskToRemove)
+            localStorage.setItem("tasks",JSON.stringify(tasks))
+
+        }
+
+        window.onload=function(){
+            loadTask()
+        }
+        function loadTask(){
+            const tasks=getTasksFromLocalStorage();
+            tasks.forEach(task => {
+                createTaskElement(task)
+                
+            });
+        }
+    </script>
+    
+</body>
+</html>

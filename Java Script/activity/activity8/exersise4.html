@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Output Displayed in console</h1>
+
+    <!-- Create a simple task manager. Allow users to input a task and add it to a list. Each task should display a "Remove"
+    button next to it. When clicked, the button should remove the task from the list. Additionally, implement an "Edit"
+    button for each task. Clicking the "Edit" button should replace the task text with an input field pre-filled with
+    the current task text. After editing, clicking a "Save" button should update the task. -->
+
+    <h1>To Do List</h1>
+
+    <label for="task">Enter a task:</label>
+    <input type="text" id="task-input">
+    <button onclick="addTask()">Submit</button>
+
+    <ul id="task-list"></ul>
+
+    <script>
+        // Function to add a new task to the list
+        function addTask() {
+            const taskInput = document.getElementById("task-input");
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") return; // Do nothing if input is empty
+
+            const taskList = document.getElementById("task-list");
+
+            // Create a new task item element
+            const taskItem = document.createElement("li");
+            taskItem.className = "task-item";
+
+            // Create a span to hold the task text
+            const taskTextSpan = document.createElement("span");
+            taskTextSpan.textContent = taskText;
+
+            // Create the "Edit" button
+            const editButton = document.createElement("button");
+            editButton.className = "edit";
+            editButton.textContent = "Edit";
+            editButton.onclick = function () {
+                editTask(taskItem, taskTextSpan);
+            };
+
+            // Create the "Remove" button
+            const removeButton = document.createElement("button");
+            removeButton.className = "remove";
+            removeButton.textContent = "Remove";
+            removeButton.onclick = function () {
+                taskList.removeChild(taskItem);
+            };
+
+            // Append the task text and buttons to the task item
+            const taskButtons = document.createElement("div");
+            taskButtons.className = "task-buttons";
+            taskButtons.appendChild(editButton);
+            taskButtons.appendChild(removeButton);
+
+            taskItem.appendChild(taskTextSpan);
+            taskItem.appendChild(taskButtons);
+
+            // Add the task item to the list
+            taskList.appendChild(taskItem);
+
+            // Clear the input field after adding
+            taskInput.value = "";
+        }
+
+        // Function to edit an existing task
+        function editTask(taskItem, taskTextSpan) {
+            const currentText = taskTextSpan.textContent;
+
+            // Create an input field pre-filled with the current task text
+            const inputField = document.createElement("input");
+            inputField.type = "text";
+            inputField.value = currentText;
+            inputField.className = "edit-input";
+
+            // Replace the task text with the input field
+            taskItem.replaceChild(inputField, taskTextSpan);
+
+            // Create the "Save" button
+            const saveButton = document.createElement("button");
+            saveButton.className = "save";
+            saveButton.textContent = "Save";
+            saveButton.onclick = function () {
+                saveTask(taskItem, inputField);
+            };
+
+            // Replace the "Edit" button with the "Save" button
+            const editButton = taskItem.querySelector(".edit");
+            taskItem.querySelector(".task-buttons").replaceChild(saveButton, editButton);
+        }
+
+        // Function to save an edited task
+        function saveTask(taskItem, inputField) {
+            const newText = inputField.value.trim();
+
+            // Create a new span with the updated text
+            const updatedSpan = document.createElement("span");
+            updatedSpan.textContent = newText;
+
+            // Replace the input field with the updated text
+            taskItem.replaceChild(updatedSpan, inputField);
+
+            // Create the "Edit" button again
+            const editButton = document.createElement("button");
+            editButton.className = "edit";
+            editButton.textContent = "Edit";
+            editButton.onclick = function () {
+                editTask(taskItem, updatedSpan);
+            };
+
+            // Replace the "Save" button with the "Edit" button
+            const saveButton = taskItem.querySelector(".save");
+            taskItem.querySelector(".task-buttons").replaceChild(editButton, saveButton);
+        }
+
+    </script>
+
+</body>
+
+</html>

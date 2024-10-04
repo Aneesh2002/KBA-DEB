@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager with localstorage</title>
+    <style>
+       ul {
+        list-style-type: none;
+        padding: 0;
+       }
+       li {
+        margin: 5px 0;
+       }
+       button {
+        margin-left: 10px;
+       }
+    </style>
+</head>
+<body>
+    <h1>Trying out localstorage</h1>
+    <input type="text" id="taskInput" placeholder="Enter your task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+    <script>
+        //function to add a new task
+        function addTask(){
+            const taskInput = document.getElementById('taskInput');
+            const taskValue = taskInput.value.trim();
+            if(taskValue !==''){
+                saveTaskToLocalStorage(taskValue);
+                createTaskElement(taskValue);
+                taskInput.value =''; //clear input
+            }
+        }
+        //function to save a task to localstorage
+        function saveTaskToLocalStorage(task){
+            let tasks = getTasksFromLocalStorage();
+            tasks.push(task);
+            localStorage.setItem('tasks',JSON.stringify(tasks));
+        }
+        //function to get all tasks from local storage
+        function getTasksFromLocalStorage(){
+            const tasks = localStorage.getItem('tasks');
+            return tasks ? JSON.parse(tasks): [];
+        }
+
+        //function to create a task element
+        function createTaskElement(task){
+            const taskList = document.getElementById('taskList');
+            const li = document.createElement('li');
+            li.textContent = task;
+            //add remove button
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = function(){
+                removeTask(task);
+                taskList.removeChild(li);
+            };
+            li.appendChild(removeButton);
+            taskList.appendChild(li);
+        }
+        //function to remove a task from localstorage
+        function removeTask(taskToRemove){
+            let tasks = getTasksFromLocalStorage();
+            tasks = tasks.filter(task => task !==taskToRemove);
+            localStorage.setItem('tasks',JSON.stringify(tasks));
+        }
+        //load tasks when page loads or refreshes
+        window.onload = function(){
+            loadTasks();
+        };
+        function loadTasks(){
+            const tasks = getTasksFromLocalStorage();
+            tasks.forEach(task => {
+                createTaskElement(task);
+            });
+        }
+
+    </script>
+
+    
+</body>
