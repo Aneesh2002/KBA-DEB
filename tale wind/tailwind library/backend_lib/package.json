@@ -1,17 +1,15 @@
 {
-  "name": "backend",
+  "name": "backend_lib",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "express": "^4.21.1"
   }
 }

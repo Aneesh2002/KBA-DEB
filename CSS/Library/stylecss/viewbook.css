@@ -1,0 +1,77 @@
+.nav ul li{
+    float: right;
+    list-style: none;
+    
+    padding: 20px;
+
+}
+.navbar .logo p{
+    width: 40px;
+    height: 45px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+} 
+a{
+    text-decoration: none;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navbar{
+    width: auto;
+    height: 50px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    background-color:transparent;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(/CSS/Library/images/background.jpg);
+    font-family: Arial, Helvetica, sans-serif;
+    background-size: cover;
+    background-position: unset;
+}
+  .logo img{
+    width: 80px;
+    height: 80px;
+}
+.logo{
+    display: flex;
+    float: left;
+
+}
+.subdiv{
+    text-align: center;
+    color: white;
+}
+.maindiv{
+    margin-top: 20px;
+    color: white;
+}
+.maindiv .subdiv{
+    margin-right: 300px;
+}
+
+.maindiv .subdiv img{
+    width: 150px;
+    height: 200px;
+}
+
+.row{
+    text-align: center;
+    display: flex;
+    margin-left: 100px;
+}
+
+.row h4{
+    font-size: 20px;
+
+}
+.row p{
+    font-size: 18px;
+}
