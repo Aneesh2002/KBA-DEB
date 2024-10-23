@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="">enter radius of a circle</label>
+        <input type="number" id="value">
+        
+    </div>
+    <div>
+        <button onclick="AreaofCircle()">submit</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        function AreaofCircle(){
+            const radius = document.getElementById("value").value
+            const pie = 3.14
+
+            const area = pie*radius*radius
+            document.getElementById("result").innerHTML=`area of sqare is ${area}`
+
+        }
+    </script>
+</body>
+</html>

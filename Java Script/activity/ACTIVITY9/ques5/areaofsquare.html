@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="">enter a side of square</label>
+        <input type="number" id="value">
+        
+    </div>
+    <div>
+        <button onclick="Area()">submit</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        function Area(){
+            const input = document.getElementById("value").value
+            
+
+            const area = 4*input
+            document.getElementById("result").innerHTML=`area of sqare is ${area}`
+
+        }
+    </script>
+
+    </body>
+</html>

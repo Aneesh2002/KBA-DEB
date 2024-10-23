@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="" id="">
+    </div>
+    <div>
+        <label for="name">Address</label>
+        <textarea name="" id=""></textarea>
+    </div>
+    <div>
+        <div>
+            <input type="radio" name="course">
+            <label for="">B Tech</label>
+        </div>
+        <div>
+            <input type="radio" name="course">
+            <label for="">M Tech</label>
+        </div>
+        <div>
+            <input type="radio" name="course">
+            <label for="">MCA</label>
+        </div>
+        <div>
+            <input type="radio" name="course" onclick="showDropdown()">
+            <label for="">Others</label>
+        </div>
+    </div>
+
+    <!-- dropdown -->
+
+    <div id="dropdown" class="hidden">
+        <select name="" id="">
+            <option value="">BCA</option>
+            <option value="">BCA</option>
+            <option value="">BCA</option>
+            <option value="">BCA</option>
+        </select>
+    </div>
+
+    <script>
+        function showDropdown(){
+            
+            document.getElementById('dropdown').classList.remove('hidden');
+        }
+    </script>
+    
+</body>
+</html>
