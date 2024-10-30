@@ -88,18 +88,18 @@ Route.post('/addcourse', authenticate, (req, res) => {
             console.log(req.UserName);
             console.log(req.Role);
 
-            const { CourseName, CourseId, Description, CourseType } = req.body
-            console.log(CourseName);
+            const { coursename, courseID, description, coursetype } = req.body
+            console.log(coursename);
 
             if (req.Role == "admin") {
-                if (course.has(CourseName)) {
+                if (course.has(coursename)) {
                     res.status(400).json({ message: "Course already exsist" })
                 }
 
                 else {
-                    course.set(CourseName, { CourseId, Description, CourseType })
+                    course.set(coursename, { courseID, description, coursetype })
                     res.status(200).json({ message: 'Course Add Successfully' })
-                    console.log(course.get(CourseName))
+                    console.log(course.get(coursename))
                 }
 
 
@@ -184,7 +184,7 @@ Route.get('/search/:name', authenticate, (req, res) => {
 
     try {
 
-        if (req.UserName) {
+        if (req.UserName=="admin") {
 
             const search = req.params.name
             course.get(search)
@@ -249,9 +249,97 @@ Route.get('/search', (req, res) => {
     }
 
 })
+Route.get('/viewUser',authenticate,(req,res)=>{
+    try{
+    const user=req.Role;
+    res.json({user});}
+    catch{
+        res.status(404).json({message:'user not authorized'});
+    }
+})
+Route.get('/viewCourse', async(req,res)=>{
+    try{
+        console.log(course.size);
+
+        if(course.size!=0){
+           
+            
+        res.send(Array.from(course.entries()))
+    }
+else{
+    res.status(404).json({message:'Not Found'});
+}}
+    catch{
+        res.status(404).json({message:"Internal error"})
+    }
+})
+Route.get('/getcourse/:coursename',(req,res)=>{
+    try{
+        const search =req.params.coursename
+   console.log(search);
+  
+        if (course.has(search)) {
+            console.log(course.get(search));
+            const items =course.get(search)
+            return res.status(200).json({
+                message:`${search}`,
+                course:items
+            })
+            
+        }
+        else {
+            res.status(404).json({ message: "No course found,Check the name" })
+        }
+    }
+    catch (error) {
+        res.status(400).json({ message: "Check the input" })
+    }
+ })
+ Route.delete('/delete/:coursename',authenticate ,(req,res)=>{
+    try {
+
+        const name = req.params.coursename
+
+        if (req.UserRole === 'admin') {
+            if (course.has(name)) {
+                course.delete(name);
+                res.status(200).json({ message: "course deleted" })
+                console.log(course)
+            } else {
+                console.log('This id is not existed!');
+
+            }
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+Route.get('/getCourse',(req,res)=>{
+    try{
+   const search= req.query.coursename; 
+   console.log(search);
+        const result = course.get(search)
+        if (result) {
+
+            res.send(result);
+        }
+        else {
+            res.status(404).json({ message: "No course found,Check the name" })
+        }
+    }
+    catch (error) {
+        res.status(400).json({ message: "Check the input" })
+    }
+ })
 
 
 
 
 
-export { Route };
+
+
+
+
+
+export { Route,course };

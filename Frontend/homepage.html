@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <title>Blockchain Courses</title>
+    <script>
+        window.onload = async()=>{
+            console.log("hi")
+
+            const response = await fetch("http://127.0.0.1:8001/viewUser",{
+                method:"GET",
+                credentials:"include",
+            })
+            const data = await response.json()
+
+            if(data.user == "admin"){
+                document.getElementById("admin").style.display='block'
+            }
+
+
+        }
+
+
+            async function viewCourse(){
+            const response=await fetch("http://127.0.0.1:8001/viewCourse",{
+            method:'GET',
+           credentials: 'include', 
+            });
+            console.log(response.status);
+            
+             const data1=await response.json();
+             console.log(data1.length);
+             
+            if(response.status!=404){
+                console.log(data1,"data");
+                const container=document.getElementById("cards")
+                container.innerHTML='';
+                data1.forEach(course => {
+                    console.log(course);
+                    const coursediv=document.createElement("div");
+                    coursediv.style.border='2px solid red';
+                    coursediv.style.width='250px'
+
+                   const coursename=document.createElement("h1");
+                   coursename.id='name';
+                   coursename.value=course[0]
+                   coursename.innerHTML=course[0];
+                   const image=document.createElement("img");
+                   image.src="./download.png";
+                   const description=document.createElement("p");
+                   description.innerHTML=course[1].description;
+                   const more=document.createElement("input");
+                   more.onclick = function (){
+                    handleMore(course[0])
+                   };
+                   more.type='submit';
+                   more.value='View More'
+                   more.style.border='2px solid black';
+                                   
+                   
+                   coursediv.appendChild(coursename);
+                   coursediv.appendChild(image);
+                   coursediv.appendChild(description);
+                   coursediv.appendChild(more);
+                   container.appendChild(coursediv);
+
+
+
+            })
+            
+        }
+        else{
+            window.location.href='/notfound.html';
+        }
+        }
+        function handleMore(value1){
+            
+            console.log(value1);
+            localStorage.setItem('course',value1);
+            window.location.href='./viewmore.html'
+            
+        }
+    
+    </script>
+    
+  </head>
+<body>
+   <!-- navbar  -->
+    <div class='bg-purple-100 text-purple-950 grid grid-cols-1 md:grid-cols-2 p-3 shadow-md'>
+        <div class='flex items-center'>
+
+            <a href="#" >
+                <img class='m-1p-2 size-12' src="./kbalogo.jpeg" alt="logo" />
+            </a>
+            
+        </div>
+        <div class='flex justify-center md:justify-end items-center mt-2 md:mt-0 space-x-5 md:space-x-10'>
+            <a href="#" class='ml-20'>Home</a>
+            <a href="#" class='ml-20'>Courses</a>
+            <a href="#" class='ml-20'>Contact Us</a>
+            
+            <a href="/Frontend/addcourse.html" id="admin" class='ml-20' style="display: none;">Add Course</a>
+            <a class='ml-20' href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+   <!-- hero  -->
+   <div class='bg-purple-100 text-purple-950 p-10 rounded shadow-xl flex flex-col items-center justify-center mt-1 text-center'>
+    <h1 class='font-bold text-xl md:text-3xl lg:text-4xl'>Learn Blockchain Technology From Kerala's First Dedicated Facility for Blockchain Education</h1>
+    <h2 class='mt-4 text-lg md:text-xl lg:text-2xl'>Since 2017</h2>
+  </div>
+
+  <!-- Top Courses -->
+  <div class='bg-purple-100 flex flex-col items-center justify-center my-10 p-10 text-center'>
+    <h1 class='font-bold text-2xl md:text-4xl text-purple-800'>BROWSE OUR TOP COURSES</h1>
+    <h2 class='font-medium text-lg md:text-xl text-purple-400 mt-4'>Choose the course that's right for your career goals.</h2>
+  </div>
+
+   <!-- cards -->
+   
+    <div id="cards" style="display: flex;"></div>
+
+   <!-- all courses button -->
+    <div class='flex justify-center mb-40'>
+        <button class='w-80 h-10 rounded-full bg-purple-500 text-white font-medium  hover:bg-purple-600' onclick="viewCourse()" >View all Courses</button>
+    </div>
+</body>
+</html>

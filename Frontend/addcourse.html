@@ -32,16 +32,16 @@
             <form action="">
                 <div class="mt-4 pl-8">
                     <h4 class="text-black">Course Name:</h4>
-                    <input type="text" required class="w-96 h-10 ">
+                    <input type="text" required class="w-96 h-10 " id="name">
                 </div>
 
                 <div class="mt-4 pl-8">
                     <h4 class="text-black">Course ID:</h4>
-                    <input type="password" required class="w-96 h-10">
+                    <input type="password" required class="w-96 h-10" id="id">
                 </div>
                 <div class="mt-4 pl-8">
                     <h4 class="text-black">Course Type:</h4>
-                    <select class="w-96 h-10">
+                    <select class="w-96 h-10" id="type">
                         <option value="">PCB</option>
                         <option value="">CS</option>
                         <option value="">BC</option>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="mt-4 pl-8">
                     <h4 class="text-black">Description:</h4>
-                    <textarea id="message" rows="4" cols="2" class="block p-2.5 w-96 text-sm text-gray-900 bg-white rounded-lg border" placeholder="Write your thoughts here..."></textarea>
+                    <textarea id="description" rows="4" cols="2" class="block p-2.5 w-96 text-sm text-gray-900 bg-white rounded-lg border" placeholder="Write your thoughts here..." ></textarea>
                 </div>
                 <div class="mt-4 pl-8">
                     <h4 class="text-black">Price</h4>
@@ -60,8 +60,8 @@
                     </select>
                 </div>
 
-                <div class=" mt-5 ml-8  bg-black  rounded-xl  text-center w-96 h-10 ">
-                    <input type="button" class="text-white p-3 w-32  rounded-xl focus:ring-4 ring-blue-500" value="Add Course" required >
+                <div class=" mt-5 ml-8  bg-black  rounded-xl  text-center w-96 h-10  text-white">
+                    <button type="submit" class="text-white p-3 w-32  rounded-xl focus:ring-4 ring-blue-500" value="Add Course" required  onclick="addCourse(event)">addcourse</button>
                 </div>
             </form>
         </div>
@@ -78,7 +78,7 @@
         // const userRole = document.getElementById("UserRole").value
         console.log(coursename,courseid,coursetype,description)
 
-        const response = await fetch("http://127.0.0.1:8000/addcourse",{
+        const response = await fetch("http://127.0.0.1:8001/addcourse",{
             method:"POST",
             credentials:"include",
             headers:{
@@ -96,6 +96,17 @@
             
         })
         console.log(response.status);
+        if(response.status == 200){
+          alert("course added")
+          window.location.href="./Login.html"
+        }else if(response.status==400){
+            alert("course alredy added")
+            
+
+        }
+        else{
+            alert("Server Error..,try after sometimes")
+        }
 
 
     }
