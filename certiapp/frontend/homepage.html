@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>home page</title>
+    <script>
+          window.onload = async()=>{
+            console.log("hi")
+
+            const response = await fetch("http://127.0.0.1:8080/viewUser",{
+                method:"GET",
+                credentials:"include",
+            })
+            const data = await response.json()
+
+            if(data.user == "admin"){
+                document.getElementById("admin").style.display='block'
+            }
+
+
+        }
+
+     async function handleSearch(event){
+     
+     event.preventDefault();
+ 
+     let datas =document.getElementById("data").value
+     console.log(datas);
+      
+    const response = await fetch(`http://127.0.0.1:8080/getCertificate/${datas}`,{
+     method:"GET",
+     credentials:"include"
+    })
+  
+    console.log(response);
+    const data= await response.json();
+    console.log(data);
+    console.log(data.message);
+    const searchData=data.message;
+    if(response.status == 200){
+        localStorage.setItem("searchCourse",searchData);
+          window.location.href="./viewcertificate.html"
+    }    else if(response.status==404){
+        alert("no certificate found")
+        
+    }
+    // if(response.status == 200){
+   
+    //  console.log(data.user.CourseID);
+    //  const searchData=data.message
+     
+    //  localStorage.setItem("searchCourse",searchData);
+    // }
+
+    // else{
+    //     alert("check the input")
+    }
+    
+    
+         
+
+    </script>
+</head>
+<body class="bg-slate-100	">
+
+<nav class="flex justify-end p-3 text-white">
+    <div>
+        <a href="homepage.html" class="mx-4 bg-blue-600 px-3 py-2">Home</a>
+        <a href="./formpage.html" class="mx-4 text-black"  style="display: none;" id="admin">Issue Certificate</a>
+    </div>
+</nav>
+
+
+    <div class="flex justify-center bg-slate-300 mx-96 ">
+        <div class="flex items-center flex-col justify-center">
+            <form >
+                <h1 class="text-4xl font-bold text-center m-5">DcertiApp App</h1>
+                <div class="my-12">
+                    <img src="/certiapp/images/online-course.png" alt="" class="size-72">
+                </div>
+                <div>
+                    <input type="text" class="outline-none border-2 border-sky-600"  placeholder="Enter Certificate Id To View"  id="data">
+                    <button class="bg-sky-500 px-3 py-1 text-white m-5" onclick="handleSearch(event)">search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

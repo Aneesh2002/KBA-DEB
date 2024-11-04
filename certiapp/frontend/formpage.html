@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>form page</title>
+    <script>
+      async function issueCertificate(event) {
+          event.preventDefault();
+          const coursename = document.getElementById("coursename").value
+          const cid = document.getElementById("cid").value
+          const cname = document.getElementById("cname").value
+          const grade = document.getElementById("grade").value
+          const date = document.getElementById("date").value
+          // const userRole = document.getElementById("UserRole").value
+          console.log(coursename,cid,cname,grade,date)
+  
+          const response = await fetch("http://127.0.0.1:8080/issue",{
+              method:"POST",
+              credentials:"include",
+              headers:{
+                  "Content-Type":"application/json"
+  
+                  
+              },
+              body:JSON.stringify({
+                CourseID:cid,
+                CourseName:coursename,
+                CandidateName:cname,
+                Grade:grade,
+                IssueDate:date    
+              })
+              
+              
+          })
+          console.log(response.status);
+          if(response.status == 201){
+            alert("certificate added")
+            window.location.href="./homepage.html"
+          }else if(response.status==400){
+              alert("certificate alredy added")
+              
+  
+          }
+          else{
+              alert("Server Error..,try after sometimes")
+          }
+  
+  
+      }
+  </script>
+</head>
+<body class="bg-slate-100	">
+
+  <nav class="flex justify-end p-3 text-white">
+    <div>
+        <a href="homepage.html" class="mx-4  text-red-400 hover:text-black">Home</a>
+        <a href="viewcertificate.html" class="mx-4 text-black bg-blue-400 px-3 py-2 hover:bg-green-300" >Issue Certificate</a>
+    </div>
+</nav>
+
+
+<h1 class="text-center font-bold text-2xl">Select Course</h1>
+    <div class="flex justify-center ">
+     
+   <div class="w-96  m-20  py-10 px-10 rounded-md bg-blue-200	">
+    <form >
+    <label for="">Select Course</label>
+      <div>
+     <select name="" id="coursename" class=" py-1 text-black w-86">
+            <option value="Block Chain">Block Chain</option>
+            <option value="Cyber security" >Cyber security</option>
+        </select>
+      </div>
+  
+      <label for="">Certificate ID</label>
+      <div>
+        <input type="text" class="py-2 my-2 px-5 w-86" placeholder="Certificate ID" id="cid">
+      </div>
+      
+      <label for="">Candidate Name</label>
+      <div>
+        <input type="text" class="py-2 my-2 px-5 w-86 " placeholder="Candidate name" id="cname">
+      </div>
+
+      <label for="">Select Grade</label>
+      <div>
+        <select class="py-1 my-2 w-86 rounded-md text-black" id="grade">
+            <option value="A">A</option>
+            <option value="B">B</option>
+        </select>
+      </div>
+
+      <label for="">Issue Date*</label>
+      <div>
+        <input type="date" class="py-1 w-86" id="date">
+      </div>
+
+      <div class="text-center mt-10 py-4">
+        <button class=" border bg-blue-400 hover:bg-red-400 py-3 px-3" onclick="issueCertificate(event)">Issue Certificate</button>
+      </div>
+    </form>
+   </div>
+    </div>
+</body>
+</html>

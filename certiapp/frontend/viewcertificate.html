@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>certificate</title>
+
+<script>
+    window.onload=async()=>{
+        
+        let searched =localStorage.getItem("searchCourse")
+        console.log(searched);
+
+      const response = await fetch(`http://127.0.0.1:8080/getCertificate/${searched}`,{
+
+            method:"GET",
+            credentials:"include"
+        })
+
+        console.log(response);
+        const data = await response.json()
+        console.log(data);
+
+      let  cname=data.course.CourseName
+      let  date=data.course.IssueDate
+      let grade=data.course.Grade
+      let Uname=data.course.CandidateName
+         
+    
+        if(response.status ==200){
+          
+
+            let uname=document.getElementById("uname")
+           
+
+            uname.innerHTML=`This is to Certify that <b>${Uname}</b>`
+
+
+            let course=document.getElementById("ccourse")
+            course.innerHTML=`has Successfully Completed <b>${cname}</b>  Foundation`
+
+            let cdate=document.getElementById("cdate")
+            cdate.innerHTML=`with <b>${grade}</b> on <b>${date}</b>`
+
+        }
+        
+
+        
+        
+    }
+</script>
+
+
+</head>
+<body class="bg-slate-300	">
+
+
+
+    <div class="flex justify-center border-2 border-black m-5 p-6 ">
+        <div >
+            <form class="flex items-center flex-col justify-center">
+                <h1 class="text-xl font-bold text-center">Kerala Blockchain Academy</h1>
+                <div class="my-5 text-center">
+                    <img src="online-course.png" alt="" class="size-72">
+                </div>
+                <div>
+                   <ul class="flex flex-col justify-center items-center">
+                    <li class="my-3" id="uname"></li>
+                    <li class="my-3"  id="ccourse"></li>
+                    <li id="cdate"></li>
+                   </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

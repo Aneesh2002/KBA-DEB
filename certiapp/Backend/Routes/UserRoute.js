@@ -75,13 +75,17 @@ Route.post('/login',async(req,res)=>{
 Route.post('/issue',authenticate,(req,res)=>{
     try{
         const data=req.body
-        const {CourseID,CourseName,CourseType,Grade,IssueDate}=data
+        const {CourseID,
+    CourseName,
+    CandidateName,
+    Grade,
+    IssueDate}=data
         if(req.Role == "admin"){
             if(user.has(CourseID)){
                 res.status(400).json({message:"certificate alredy exists"})
 
             }else{
-                user.set(CourseID,{CourseName,CourseType,Grade,IssueDate})
+                user.set(CourseID,{CourseName,CandidateName,Grade,IssueDate})
                 res.status(201).json({message:"Certificate addedd successfully"})
                 console.log(user.get(CourseID))
                 
@@ -96,5 +100,36 @@ Route.post('/issue',authenticate,(req,res)=>{
 
     }
 })
+Route.get('/viewUser',authenticate,(req,res)=>{
+        try{
+        const user=req.Role;
+        res.json({user});}
+        catch{
+            res.status(404).json({message:'user not authorized'});
+        }
+    })
+    Route.get('/getCertificate/:CourseID',(req,res)=>{
+            try{
+                const search =req.params.CourseID
+           console.log(search);
+        
+                if (user.has(search)) {
+                    console.log(user.get(search));
+                    const items =user.get(search)
+                    return res.status(200).json({
+                        message:search,
+                        course:items
+                    })
+        
+                }
+                else {
+                    res.status(404).json({ message: "No course found,Check the name" })
+                }
+            }
+            catch (error) {
+                res.status(400).json({ message: "Check the input" })
+            }
+         })
+
 
 export {Route}
