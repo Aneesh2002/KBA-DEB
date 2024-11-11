@@ -6,7 +6,7 @@
     <title>ADD COURSE</title>
      <script src="https://cdn.tailwindcss.com"></script>
      <script>
-        async function issueCertificate(event) {
+        async function addBook(event) {
             event.preventDefault();
             const bookid = document.getElementById("id").value
             const bookname = document.getElementById("bname").value
@@ -14,7 +14,7 @@
             const description = document.getElementById("message").value
             
             // const userRole = document.getElementById("UserRole").value
-            console.log(coursename,cid,cname,grade,date)
+            console.log(bookid,bookname,authname,description)
     
             const response = await fetch("http://127.0.0.1:9999/addBook",{
                 method:"POST",
@@ -26,19 +26,19 @@
                 },
                 body:JSON.stringify({
                   BookID:bookid,
-                  BookName:coursename,
-                  AuthorName:cname,
-                  Description:grade,
+                  BookName:bookname,
+                  AuthorName:authname,
+                  Description:description,
                 })
                 
                 
             })
             console.log(response.status);
             if(response.status == 201){
-              alert("certificate added")
-              window.location.href="./homepage.html"
+              alert("book added")
+              window.location.href="./home.html"
             }else if(response.status==400){
-                alert("certificate alredy added")
+                alert("book  alredy added")
                 
     
             }
@@ -78,26 +78,26 @@
             <form action="">
                 <div class="mt-4 pl-4">
                     <h4 class="text-white">Book ID:</h4>
-                    <input type="text" required class="w-96 h-10 " id="id">
+                    <input type="text" class="w-96 h-10 " id="id" required>
                 </div>
 
                 <div class="mt-4 pl-4">
                     <h4 class="text-white">Book name:</h4>
-                    <input type="text" required class="w-96 h-10" id="bname">
+                    <input type="text"   class="w-96 h-10" id="bname" required>
                 </div>
                 <div class="mt-4 pl-4">
                     <h4 class="text-white">Author Name:</h4>
-                    <input type="text" required class="w-96 h-10 " id="aname">
+                    <input type="text"  class="w-96 h-10 " id="aname" required>
                 </div>
                 <div class="mt-4 pl-4">
                     <h4 class="text-white">Description:</h4>
-                    <textarea id="message" rows="4" cols="2" class="block p-2.5 w-96 text-sm text-gray-900 bg-white rounded-lg border" placeholder="Write your thoughts here..." ></textarea>
+                    <textarea id="message" rows="4" cols="2" class="block p-2.5 w-96 text-sm text-gray-900 bg-white rounded-lg border" placeholder="Write your thoughts here..." required ></textarea>
                 </div>
                
 
-                <div class=" mt-5 ml-4  bg-black  rounded-xl  text-center w-96 h-10 ">
-                    <input type="button" class="text-white p-3 w-32  rounded-xl focus:ring-4 ring-blue-500" value="Add Book" required >
-                </div>
+                
+                    <button type="submit" class="  mt-5 ml-4  bg-black text-center w-96 h-10 text-white p-3 w-32  rounded-xl " value="Add Book" onclick="addBook(event)">AddBook</button>
+            
             </form>
         </div>
 
