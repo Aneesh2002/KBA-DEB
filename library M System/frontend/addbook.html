@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD COURSE</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <script>
+        async function addBook(event) {
+            event.preventDefault();
+            const bookid = document.getElementById("id").value
+            const bookname = document.getElementById("bname").value
+            const authname = document.getElementById("aname").value
+            const description = document.getElementById("message").value
+            
+            // const userRole = document.getElementById("UserRole").value
+            console.log(bookid,bookname,authname,description)
+    
+            const response = await fetch("http://127.0.0.1:9999/addBook",{
+                method:"POST",
+                credentials:"include",
+                headers:{
+                    "Content-Type":"application/json"
+    
+                    
+                },
+                body:JSON.stringify({
+                  BookID:bookid,
+                  BookName:bookname,
+                  AuthorName:authname,
+                  Description:description,
+                })
+                
+                
+            })
+            console.log(response.status);
+            if(response.status == 201){
+              alert("book added")
+              window.location.href="./home.html"
+            }else if(response.status==400){
+                alert("book  alredy added")
+                
+    
+            }
+            else{
+                alert("Server Error..,try after sometimes")
+            }
+    
+    
+        }
+    </script>
+</head>
+<body class="bg-[url('./images/background.jpg')] bg-cover">
+   
+
+    <nav  class="flex justify-between p-4 bg-transparent text-white	  mt-2 font-serif   ">
+        <div class="flex flex-row">
+          
+          <img  class="size-12 flex justify-start " src="./images/logo.jpg">
+          <p class="font-bold text-3xl mt-3 ml-4">Literra</p>
+          
+          </div>
+        
+          <div class="mt-4 space-x-4 text-xl font-bold " >
+            <a href="/tale wind/tailwind library/home.html">Home</a>
+            <a href="/tale wind/tailwind library/viewbook.html">viewbook</a>
+            <a href="/tale wind/tailwind library/addbook.html">Add book</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Logout</a>
+          </div>
+        </div>
+      </nav>
+  
+  <div class="flex justify-center mt-32">
+    <div class="bg-transparent w-7/8 max-h-full p-14 mt-0 mb-6 border-4 border-white rounded-xl shadow-xl">
+        <H2 class="text-white font-mono text-2xl font-bold text-center">Add Book</H2>
+        <div class="ml-4">
+            <form action="">
+                <div class="mt-4 pl-4">
+                    <h4 class="text-white">Book ID:</h4>
+                    <input type="text" class="w-96 h-10 " id="id" required>
+                </div>
+
+                <div class="mt-4 pl-4">
+                    <h4 class="text-white">Book name:</h4>
+                    <input type="text"   class="w-96 h-10" id="bname" required>
+                </div>
+                <div class="mt-4 pl-4">
+                    <h4 class="text-white">Author Name:</h4>
+                    <input type="text"  class="w-96 h-10 " id="aname" required>
+                </div>
+                <div class="mt-4 pl-4">
+                    <h4 class="text-white">Description:</h4>
+                    <textarea id="message" rows="4" cols="2" class="block p-2.5 w-96 text-sm text-gray-900 bg-white rounded-lg border" placeholder="Write your thoughts here..." required ></textarea>
+                </div>
+               
+
+                
+                    <button type="submit" class="  mt-5 ml-4  bg-black text-center w-96 h-10 text-white p-3 w-32  rounded-xl " value="Add Book" onclick="addBook(event)">AddBook</button>
+            
+            </form>
+        </div>
+
+    </div>
+</div>
+    
+</body>
+</html>

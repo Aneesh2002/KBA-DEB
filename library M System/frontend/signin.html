@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <!-- <link rel="stylesheet" href="stylecss/style.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        async function handleSignin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("uname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("pass").value;
+            const role = document.getElementById("role").value;
+            console.log(username,email,password,role);
+            
+
+            // Basic validation for empty fields
+            // if (!username || !email || !password || !role) {
+            //     alert("Please fill in all fields.");
+            //     return;
+            // }
+
+            try {
+                const response = await fetch("http://127.0.0.1:9999/signup", {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        Email: email,
+                        UserName: username,
+                        Password: password,
+                        Role: role
+                    })
+                });
+
+                console.log(response.status);
+
+                if (response.status === 201) {
+                    alert("Successfully signed up");
+                    window.location.href = "./liblogin.html";
+                } else if (response.status === 400) {
+                    const errorData = await response.json();
+                    alert(errorData.message || "Username already in use.");
+                } else {
+                    alert("Server error. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Network error. Please check your connection and try again.");
+            }
+        }
+
+    </script>
+</head>
+
+<body class="bg-[url('./images/background.jpg')] bg-cover">
+    <nav class="flex justify-between p-4 bg-transparent text-white	  mt-2 font-serif   ">
+        <div class="flex flex-row">
+
+            <img class="size-12 flex justify-start " src="./images/logo.jpg">
+            <p class="font-bold text-3xl mt-3 ml-4">Literra</p>
+
+        </div>
+
+        <!-- <div class="mt-4 space-x-4 text-xl font-bold " >
+            <a href="/tale wind/tailwind library/home.html">Home</a>
+            <a href="/tale wind/tailwind library/viewbook.html">viewbook</a>
+            <a href="/tale wind/tailwind library/addbook.html">Add book</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Logout</a>
+          </div> -->
+        </div>
+    </nav>
+
+
+    <div
+        class="bg-transparent		 w-96 p-14	   border-4 border-white rounded-lg shadow-l 	 ml-64 text-white ml-[500px] mt-[100px]    ">
+        <p class="font-serif font-bold text-2xl indent-24	text-white        ">Sign in</p>
+        <form onsubmit="handleSignin(event)">
+            <div class="mt-4 text-white">
+                <p>Username</p>
+            </div>
+            <input type="text" class="h-10 w-72 rounded-lg hover:ring-2 ring-red-900 text-black" id="uname" required>
+            <div class="mt-4">
+                <p>Email</p>
+            </div>
+            <input type="text" class="h-10 w-72 rounded-lg hover:ring-2 ring-red-900 text-black" id="email" required>
+
+            <div class="mt-4">
+                <p>password</p>
+            </div>
+            <input type="password" placeholder="enter your password" class="h-10 w-72 rounded-lg text-black" id="pass" required>
+            <label for="role">Role</label>
+            <select name="" id="role" class="text-black" required>
+                <option value="admin">admin</option>
+                <option value="user">uer</option>
+
+            </select>
+            <button type="submit"
+                class="mt-4 float-right   mr-2 text-white w-[100px]	border border-white p-2 bg-black rounded-full 	"
+                >signin</button>
+
+
+
+            <ul class="mt-12">
+
+                <li>Already have an account?<a href="/frontend/liblogin.html" class="text-blue-600	">Login</a></li>
+            </ul>
+
+
+        </form>
+    </div>
+</body>
+
+</html>

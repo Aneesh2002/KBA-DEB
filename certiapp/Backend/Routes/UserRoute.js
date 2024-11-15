@@ -108,7 +108,7 @@ Route.get('/viewUser',authenticate,(req,res)=>{
             res.status(404).json({message:'user not authorized'});
         }
     })
-    Route.get('/getCertificate/:CourseID',(req,res)=>{
+Route.get('/getCertificate/:CourseID',(req,res)=>{
             try{
                 const search =req.params.CourseID
            console.log(search);

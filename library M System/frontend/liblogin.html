@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <!-- <link rel="stylesheet" href="stylecss/style.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[url('./images/background.jpg')] bg-cover">
+    <nav  class="flex justify-between p-4 bg-transparent text-white	  mt-2 font-serif   ">
+        <div class="flex flex-row">
+          
+          <img  class="size-12 flex justify-start " src="./images/logo.jpg">
+          <p class="font-bold text-3xl mt-3 ml-4">Literra</p>
+          
+          </div>
+        
+          <!-- <div class="mt-4 space-x-4 text-xl font-bold " >
+            <a href="/tale wind/tailwind library/home.html">Home</a>
+            <a href="/tale wind/tailwind library/viewbook.html">viewbook</a>
+            <a href="/tale wind/tailwind library/addbook.html">Add book</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Logout</a>
+          </div> -->
+        </div>
+      </nav>
+ 
+    
+    <div class="bg-transparent text-white		 w-96 p-14	    rounded-lg shadow-l ml-[500px] mt-[100px] border-4 border-white	    ">
+        <p class="font-serif font-bold text-2xl indent-24	        ">Login</p>
+        <form>
+            <div class="mt-4"><p>Username</p></div>
+            <input type="text" class="h-10 w-72 rounded-lg hover:ring-2 ring-red-900 text-black p-2" id="userName">
+
+            <div class="mt-4"><p>password</p></div>
+            <input type="password" placeholder="enter your password" class="h-10 w-72 rounded-lg text-black p-2" id="password">
+            <button class="mt-4 float-right   mr-6 text-white w-[100px]	border border-white pl-8 bg-black rounded-full	" type="submit " onclick="handleLogin(event)">Login</button>
+                
+            </div>
+            <ul class="mt-12">
+               <li><a href="Forgot Password">Forgot Password</a></li>
+                <li>Don't have an account?<a href="/tale wind/tailwind library/signin.html" class="text-blue-600 font-bold	">Sign in</a></li>
+            </ul>
+
+            
+        </form>
+    </div>
+</body>
+<script>
+    
+  async function handleLogin(event) {
+      event.preventDefault();
+      const Username = document.getElementById("userName").value
+      const password = document.getElementById("password").value
+      console.log(Username, password)
+
+      const response = await fetch("http://127.0.0.1:9999/login", {
+          method: "POST",
+          credentials:"include",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              UserName: Username,
+              Password: password
+          })
+
+      })
+      console.log(response.status)
+      if (response.status == 200) {
+          alert("successfully Login")
+          window.location.href = "./home.html"
+      } else if (response.status == 403) {
+          alert("password is incorrect")
+
+
+      }
+      else {
+          alert("user is not exist")
+      }
+
+
+  }
+</script>
+</html>
+
+    
+</body>
+</html>

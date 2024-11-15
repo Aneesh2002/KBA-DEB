@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Books</title>
+
+    <script>
+       window.onload = async () => {
+   
+           const response = await fetch("http://127.0.0.1:9999/getAllBooks",{
+               method: "GET",
+               credentials: "include"
+           });
+           console.log(response);
+           
+           const data1 = await response.json();
+           console.log(data1);
+           
+           
+           if (response.status !== 404) {
+               const container = document.getElementById("cards");
+               container.innerHTML = '';
+               
+               data1.forEach(course => {
+                   const coursediv = document.createElement("div");
+                   coursediv.className = "border-2 border-red-500 p-4 bg-white rounded-lg shadow-md";
+
+                   const bookname = document.createElement("h1");
+                   bookname.id="bname";
+                   bookname.className = "text-lg font-semibold";
+                   bookname.innerHTML = course[1].title;
+
+                   const image = document.createElement("img");
+                   image.src = "./images/book-794978_1920.jpg";
+                   image.className = "w-full h-48 object-cover rounded-md";
+
+                   const author = document.createElement("h1");
+                   author.className = "text-lg font-semibold";
+                   author.innerHTML = course[1].author;
+
+                   const description = document.createElement("p");
+                   description.className = "text-gray-700 mt-2";
+                   description.innerHTML = course[1].description;
+
+                const deletes = document.createElement("button")
+                deletes.innerHTML="Delete";
+                deletes.className = "delete-btn";
+                deletes.style.backgroundColor="red";
+                deletes.style.color="white";
+                  deletes.style.width="80px";
+                deletes.style.fontWeight="600";
+                deletes.style.display="none"
+ 
+
+                deletes.onclick = async function(){
+               
+                    handleDelete(course[1].title);
+                }
+
+                   const more = document.createElement("button");
+                   more.onclick = function() {
+                       handleMore(course[1].title);
+                      console.log( course[1].title);
+                      
+                   };
+                 
+
+                   more.className = "mt-4 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700";
+                   more.textContent = 'View More';
+
+                   const flexing = document.createElement("div")
+                    flexing.appendChild(more)
+                    flexing.width="100%"
+                    flexing.appendChild(deletes)
+                    flexing.style.display="flex"
+                    flexing.style.justifyContent="space-around"
+               
+
+                   coursediv.appendChild(bookname);
+                   coursediv.appendChild(image);
+                   coursediv.appendChild(author);
+                  
+                   coursediv.appendChild(flexing);
+            
+                   container.appendChild(coursediv);
+
+                  getUser();
+                 
+               });
+               
+           } else {
+               window.location.href = '/notfound.html';
+           }
+      
+
+
+
+           
+       };
+    
+
+       function handleMore(value1){
+
+// const more=document.getElementById("name").value;
+console.log(value1);
+localStorage.setItem('Book',value1);
+window.location.href='./viewBooks.html'
+
+}
+
+  async function handleDelete(value2){
+        
+    const response = await fetch(`http://127.0.0.1:9999/deleteBook/${value2}`,{
+     method:"DELETE",
+     credentials:"include"
+    });
+
+ console.log(response);
+  const data= await response.json();
+  console.log(data);
+  if(response.status == "200"){
+
+    alert(data.message)
+    window.location.reload();
+  }
+  
+}
+
+
+async function getUser(){
+             const response2= await fetch("http://127.0.0.1:9999/viewUser",{
+                method:"GET",
+                credentials:"include"
+            });
+            console.log(response2);
+
+            const data2 = await response2.json();
+            console.log(data2);
+            console.log(data2.user);
+            if (data2.user === "Admin") {
+                document.querySelectorAll(".delete-btn").forEach(btn => {
+                    btn.style.display = "block";
+                });
+            }
+                   }
+    </script>
+</head>
+<body class="bg-cover bg-no-repeat w-full h-screen bg-[rgba(0,0,0,0.8)] text-white" style="background-image: url('./images/background.jpg');">
+    <!-- Cards container -->
+    <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-8 text-black"></div>
+</body>
+
+</html>

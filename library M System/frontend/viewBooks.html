@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+        window.onload=async()=>{
+
+          const result=localStorage.getItem("Book")
+
+         const response=  await fetch(`http://127.0.0.1:9999/getBook/${result}`,{
+            method:"GET",
+            credentials:"include",
+
+         })
+            console.log(response);
+            const data = await response.json();
+            console.log(data);
+            document.getElementById("title").innerHTML=`${data.title} (${data.genere})`
+            document.getElementById("author").innerHTML=`<b>Author</b>:${data.author}`
+            document.getElementById("desc").innerHTML=`<b>Description</b>:${data.description}`
+            
+            const responses= await fetch("http://127.0.0.1:9999/viewUser",{
+                method:"GET",
+                credentials:"include"
+            });
+            console.log(responses);
+
+            const data1 = await responses.json();
+            console.log(data1);
+            console.log(data1.user);
+
+            if(data1.user == "Admin"){
+
+              document.getElementById("admin").style.display="block";
+
+            }
+        }
+  
+
+
+      async  function handleDelete(event){
+            event.preventDefault();
+            const result=localStorage.getItem("Book")
+          const response= await  fetch(`http://127.0.0.1:9999/deleteBook/${result}`,{
+            method:"DELETE",
+            credentials:"include"
+                  })
+
+          console.log(response);
+          const data = await response.json();
+          console.log(data);
+          if(response.status == 200){
+            alert(data.message)
+            window.location.href="./home.html"
+          }
+          
+        
+        }
+      
+    </script>
+</head>
+<body class="bg-[url('./images/background.jpg')]">
+    <div class="flex justify-center">
+        <div class=" bg-slate-600 text-white w-[700px] gap gap-3 flex flex-col items-center  p-5 border-2 mt-24" >
+            <img  class="w-full h-80 object-cover p-2" src="./images/book-794978_1920.jpg" alt="">
+              <h1 id="title" class="font-bold text-3xl text-orange-400"></h1>
+              <p id="author" class=" text-2xl"></p>
+              <p id="desc" class="text-2xl"></p>
+              <div>
+                <button  style="display: none;" class="bg-rose-700 text-white p-2 font-bold" id="admin" onclick="handleDelete(event)">DELETE</button>
+            </div>
+        </div>
+      
+    </div>
+ 
+</body>
+</html>

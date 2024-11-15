@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com " ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+      window.onload = async()=>{
+        console.log("hi")
+      
+        const response = await fetch("http://127.0.0.1:9999/viewUser",{
+            method:"GET",
+            credentials:"include",
+        })
+        const data = await response.json()
+      
+        if(data.user == "admin"){
+            document.getElementById("admin").style.display='block'
+        }
+      
+      
+      }
+      
+      </script>
+</head>
+
+<body class="bg-[url('./images/background.jpg')] bg-cover	">
+  
+  
+  <nav  class="flex justify-between p-4 bg-transparent text-white	  mt-2 font-serif   ">
+    <div class="flex flex-row">
+      
+      <img  class="size-12 flex justify-start " src="./images/logo.jpg">
+      <p class="font-bold text-3xl mt-3 ml-4">Literra</p>
+      
+      </div>
+    
+      <div class="mt-4 space-x-4 text-xl font-bold flex flex-row" >
+        
+        <a href="/frontend/home.html" class="hover:bg-white hover:text-black">Home</a>
+        <a href="/frontend/viewbook.html">viewbook</a>
+        <a href="/frontend/addbook.html"  style="display: none;" id="admin">Add book</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <div>
+    <p class="font-bold text-5xl text-white  mt-44 ml-44 font-serif	">WELCOME,</p>
+  </div>
+  <div class="w-[700px] text-center ml-96 text-xl text-white mt-4 font-serif">
+    <P>'Explore a world of knowledge, creativity,
+       and community at <span class="font-bold">"Literra"</span>. We offer a wide range of books,
+        digital resources, programs, and services for all ages.
+         Whether you're here to borrow a book, attend an event,
+       or simply find a quiet place to read, we’re here to serve you.'</P>
+    </div>
+    <div class=" size-12  rounded-full float-right mt-[170px] mr-32 flex space-x-4">
+      
+      <img src="/tale wind/tailwind library/images/face.png.png" alt="">
+      <img src="/tale wind/tailwind library/images/x.png"  class=" w-10 h-8 mt-2">
+      <img src="/tale wind/tailwind library/images/ins.png" alt="">
+    </div>
+
+
+  
+</body>
+</html>

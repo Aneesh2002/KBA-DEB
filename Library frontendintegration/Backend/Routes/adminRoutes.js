@@ -106,4 +106,28 @@ Route.get('/viewUser',authenticate,(req,res)=>{
         res.status(404).json({message:'user not authorized'});
     }
 })
+Route.get('/getBook:/bname',authenticate,(req,res)=>{
+    try{
+        const search =req.params.bname
+   console.log(search);
+
+        if (book.has(search)) {
+            console.log(book.get(search));
+            const items =book.get(search)
+            return res.status(200).json({
+                message:search,
+                course:items
+            })
+
+        }
+        else {
+            res.status(404).json({ message: "No book found,Check the name" })
+        }
+    }
+    catch (error) {
+        res.status(400).json({ message: "Check the input" })
+    }
+ 
+
+})
 export { Route }
