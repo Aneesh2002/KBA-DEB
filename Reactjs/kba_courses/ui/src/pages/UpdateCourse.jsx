@@ -2,21 +2,35 @@ import React from 'react'
 // import NavBar from '../components/NavBar'
 import MainLayout from '../layouts/MainLayout'
 import { useParams,useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import CourseData from '../data/courses.json'
+import { useState,useEffect } from 'react'
 
 const UpdateCourse = () => {
 
   const {id}=useParams();
   const navigate=useNavigate();
-  const existingCourse=CourseData.find((course)=>course.courseId===id)
-  const [course,setCourse]=useState({
-    title:'',
-    id:'',
-    type:'',
-    description:'',
-    price:'',
-  })
+  const [course,setCourse]=useState(null)
+  const [loading,setLoading]=useState(true)
+
+  useEffect(()=>{
+    const fetchCourse = async()=>{
+      try{
+        const res = await fetch(`/api/courses/${id}`);
+        const data = await res.json();
+        setCourse(data)
+      }
+      catch(error){
+        console.log(`error fetching courses:`,error);
+        
+
+      }finally{
+        setLoading(false)
+      }
+    }
+    fetchCourse()
+
+  },[id]);
+ 
+  
 
 
 
@@ -28,15 +42,36 @@ const UpdateCourse = () => {
     }))
   }
 
-  const handleSubmit=(e)=>{
-    e.preventDefault();
-    const index = CourseData.findIndex((c)=>c.courseId === id)
-    if(index !== -1){
-      CourseData[index]=course
+ const submitForm = async (e)=>{
+  e.preventDefault();
+  try{
+    const res =await fetch(`http://localhost:5000/courses/${id}`,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(course),
+    })
+    if(res.ok){
+      navigate(`/coursespage/${id}`);
     }
-    navigate(`/coursepage/${course}`)
+    else{
+      console.log('failed to load course');
+      
+    }
+
+  }catch(error){
+    console.log('eroor updating course',error);
+    
+
   }
-  if(!existingCourse){
+ }
+ if(loading){
+  return (
+    <MainLayout>
+  <h1 className='text-center mt-10'>loading...</h1>
+  </MainLayout>
+  );
+}
+  if(!course){
     return(
       <MainLayout>
         <div className='text-center ml-10'>Course not Found</div>
@@ -50,11 +85,10 @@ const UpdateCourse = () => {
   return (
     
     
-    <MainLayout>
     <section className="bg-white mb-20">
   <div className="container m-auto max-w-2xl py-2">
     <div className="bg-purple-100 px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitForm}>
         <h2 className="text-3xl text-purple-800 text-center font-semibold mb-6">
           Update Course
         </h2>
@@ -153,7 +187,6 @@ const UpdateCourse = () => {
     </div>
   </div>
 </section>
-</MainLayout>
 
     
   )

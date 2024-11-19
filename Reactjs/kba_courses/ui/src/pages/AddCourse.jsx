@@ -1,42 +1,65 @@
 import React from 'react'
 // import NavBar from '../components/NavBar'
-import MainLayout from '../layouts/MainLayout'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import CourseData from '../data/courses.json'
+// import CourseData from '../data/courses.json'
 
 
 const AddCourse = () => {
+  const[title,setTitle]=useState('');
+  const[courseId,setCourseId]=useState('');
+  const[type,setType]=useState('self-paced');
+  const[description,setDescription]=useState('');
+  const[price,setPrice]=useState('Rs.5000');
+
   const navigate=useNavigate();
-  const [course,setCourse]=useState({
-    title:'',
-    courseId:'',
-    type:'',
-    description:'',
-    price:'',
-  })
 
-  const handleChange=(e)=>{
-    const {name,value}=e.target;
-    setCourse((prevCourse)=>({
-      ...prevCourse,
-      [name]:value,
-    }))
-  }
-
-  const handleSubmit=(e)=>{
+  const submitForm =async (e) => {
     e.preventDefault();
-    CourseData.push(course);
-    navigate('/coursespage')
+
+
+    const newCourse = {
+      title,
+      courseId,
+      type,
+      description,
+      price
+    }
+    try{
+      const res = await fetch('/api/courses',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(newCourse)
+      })
+      if(res.ok){
+        navigate('/coursespage')
+      }else{
+        console.log('failed to add courses');
+        
+      }
+      
+    }
+    catch(error){
+      console.log('Error add course');
+      
+    }
+   
   }
+
+
+  
+
+
+
+  
   return (
 <>
-<MainLayout >
+
 <section className="bg-white mb-20">
     <div className="container m-auto max-w-2xl py-2">
       <div className="bg-purple-100 px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
         
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitForm}>
           <h2 className="text-3xl text-purple-800 text-center font-semibold mb-6">
             Add Course
           </h2>
@@ -52,8 +75,8 @@ const AddCourse = () => {
               className="border rounded w-full py-2 px-3 mb-2"
               placeholder="eg. Certified Blockchain Associate"
               required
-              value={course.title}
-              onChange={handleChange}
+              value={title}
+              onChange={(e)=>setTitle(e.target.value)}
               
             />
           </div>
@@ -69,8 +92,8 @@ const AddCourse = () => {
               className="border rounded w-full py-2 px-3 mb-2"
               placeholder="eg. 1"
               required
-              value={course.courseId}
-              onChange={handleChange}
+              value={courseId}
+              onChange={(e)=>setCourseId(e.target.value)}
               
             />
           </div>
@@ -87,9 +110,8 @@ const AddCourse = () => {
               name="type"
               className="border rounded w-full py-2 px-3"
               required
-              value={course.type}
-              onChange={handleChange}
-            
+              value={type}
+              onChange={(e)=>setType(e.target.value)}            
             >
               <option value="Self-Paced">Self-Paced</option>
               <option value="Instructor-Led">Instructor-Led</option>
@@ -110,8 +132,8 @@ const AddCourse = () => {
               className="border rounded w-full py-2 px-3"
               rows="4"
               placeholder="Small description on the course"
-              value={course.description}
-              onChange={handleChange}
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)}
             
             ></textarea>
           </div>
@@ -128,8 +150,8 @@ const AddCourse = () => {
               name="price"
               className="border rounded w-full py-2 px-3"
               required
-              value={course.price}
-              onChange={handleChange}
+              value={price}
+              onChange={(e)=>setPrice(e.target.value)}
               
             >
               <option value="Rs.5000">Rs.5000</option>
@@ -150,7 +172,7 @@ const AddCourse = () => {
       </div>
     </div>
   </section>
-  </MainLayout>
+  
 
 </> 
  )

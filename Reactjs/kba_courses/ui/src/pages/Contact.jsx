@@ -1,10 +1,9 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
 
 const Contact = () => {
   return (
     <>
-    <NavBar />
+  
     <section className="bg-white my-1 py-10 ">
         <div className="container px-6 py-12 mx-auto">
             <div className="text-center">
